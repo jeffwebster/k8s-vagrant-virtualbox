@@ -38,7 +38,7 @@ vagrant halt
 ```
 vagrant ssh master
 vagrant ssh node1
-vagrant ssh node12
+vagrant ssh node2
 vagrant ssh node3
 ```
 ## K8s Node Status

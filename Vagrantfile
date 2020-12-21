@@ -9,7 +9,6 @@ NODE_COUNT = 3
 K8S_VER = "1.19.5-00"
 VM_SUFFIX = "v1_19"
 
-
 Vagrant.configure("2") do |config|
   config.vm.provision :shell, privileged: true, inline: $install_common_tools
 
@@ -73,9 +72,15 @@ apt-get update && apt-get upgrade -y
 
 # Create local host entries
 echo "192.168.1.200 master" >> /etc/hosts
-echo "192.168.1.201 node1" >> /etc/hosts
-echo "192.168.1.202 node2" >> /etc/hosts
-echo "192.168.1.203 node3" >> /etc/hosts
+
+for (( i=1; i <= #{NODE_COUNT}; i++ )); do
+  addr=$((200 + $i))
+  echo "192.168.1.$addr node$i" >> /etc/hosts
+done
+
+#echo "192.168.1.201 node1" >> /etc/hosts
+#echo "192.168.1.202 node2" >> /etc/hosts
+#echo "192.168.1.203 node3" >> /etc/hosts
 
 # disable swap
 swapoff -a

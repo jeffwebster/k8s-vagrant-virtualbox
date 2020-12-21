@@ -22,6 +22,8 @@ Vagrant.configure("2") do |config|
     master.vm.box = IMAGE
     master.vm.hostname = "master"
     master.vm.network :public_network, ip: "192.168.1.200"
+    master.vm.network "forwarded_port", guest: 22, host: 2222
+    master.vm.network "forwarded_port", guest: 6443, host: 6443  
     master.vm.provision :shell, privileged: false, inline: $provision_master_node
   end
 

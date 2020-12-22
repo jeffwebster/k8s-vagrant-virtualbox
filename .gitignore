@@ -1,5 +1,8 @@
 .DS_Store
 .vagrant
+.idea
+.vscode
+
 tmp
 temp
 id_rsa.pub
